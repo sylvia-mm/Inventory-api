@@ -25,10 +25,22 @@ class ProductsController < ApplicationController
       if @product.save
         render json: @product, status: :created
       else
-        render json: @product.errors, status: :unprocessable_entity
+        render json: {message: "Cannot create user, try later"}
       end
     end
 
+    def update
+        if @product.update(product_params)
+            render json: @product, status: :accepted
+        else
+            render json: @product.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @product.destroy!
+        head :no_content
+    end
 
     private
 
