@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize
-    before_action :find_user, only: [:show, :update]
+    before_action :find_user, only: [:show, :update, :destroy]
 
     def index
         @users = User.all
@@ -28,6 +28,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def destroy
+        @user.destroy!
+        head :no_content
+    end
     private
 
     def find_user
