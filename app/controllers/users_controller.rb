@@ -7,6 +7,14 @@ class UsersController < ApplicationController
         render json: @users
     end
 
+    def show
+        if @user
+            render json: @user, include: :products
+        else
+            render json: {message: "User not found"}, status: :not_found
+        end
+    end
+
 
     private
 
