@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/signup', to: 'admins#create'
 
 #   resources :products
 #   resources :users
