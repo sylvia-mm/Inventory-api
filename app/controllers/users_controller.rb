@@ -20,6 +20,13 @@ class UsersController < ApplicationController
         render json: @user, status: :created
     end
 
+    def update
+        if @user.update(user_params)
+            render json: @user, status: :accepted
+        else
+            render json: @user.errors, status: :unprocessable_entity
+        end
+    end
 
     private
 
