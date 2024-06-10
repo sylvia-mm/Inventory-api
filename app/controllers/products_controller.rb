@@ -12,6 +12,15 @@ class ProductsController < ApplicationController
         end
     end
 
+    def show
+        if @product
+            render json: @product, status: :accepted
+        else
+            render json: @product.errors, status: :not_found
+        end
+    end 
+
+
     private
 
     def find_product
