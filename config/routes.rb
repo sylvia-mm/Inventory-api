@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get '/mysession', to: 'sessions#show'
   delete '/logout', to: 'sessions#destroy'
 
-#   resources :products
-#   resources :users
+  resources :products
+  resources :users
 # end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
