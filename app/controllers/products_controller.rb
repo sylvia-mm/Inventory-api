@@ -18,7 +18,16 @@ class ProductsController < ApplicationController
         else
             render json: @product.errors, status: :not_found
         end
-    end 
+    end
+
+    def create
+      @product = Product.create(product_params)
+      if @product.save
+        render json: @product, status: :created
+      else
+        render json: @product.errors, status: :unprocessable_entity
+      end
+    end
 
 
     private
