@@ -2,6 +2,11 @@ class UsersController < ApplicationController
     before_action :authorize
     before_action :find_user, only: [:show, :update]
 
+    def index
+        @users = User.all
+        render json: @users
+    end
+
 
     private
 
