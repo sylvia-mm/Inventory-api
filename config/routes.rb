@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post '/signup', to: 'admins#create'
+  post '/login', to: 'sessions#create'
 
 #   resources :products
 #   resources :users
