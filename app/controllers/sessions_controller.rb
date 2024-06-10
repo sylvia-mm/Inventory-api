@@ -12,10 +12,15 @@ class SessionsController < ApplicationController
   def show
     @admin = Admin.find(session[:admin_id])
     if @admin
-      render json: { first_name: @admin.first_name, last_name: @admin.last_name, email: @admin.email}, status: :ok
+      render json: {first_name: @admin.first_name, last_name: @admin.last_name, email: @admin.email}, status: :ok
     else
       head :unauthorized
     end
   end 
+  
+  def destroy
+    session[:admin_id] = nil
+    render json: { message: "Logged out!!"}
+  end
 
 end
