@@ -9,5 +9,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    @admin = Admin.find(session[:admin_id])
+    if @admin
+      render json: { first_name: @admin.first_name, last_name: @admin.last_name, email: @admin.email}, status: :ok
+    else
+      head :unauthorized
+    end
+  end 
 
 end
