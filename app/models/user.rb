@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :products
+    has_many :products, dependent: :nullify
 
     CATEGORIES= ['Stores', 'IT', 'Maintenance', 'Operations', 'Drivers', 'Finance']
     validates :department, presence: true, inclusion: { in: CATEGORIES, message: "Please use a valid category" }
