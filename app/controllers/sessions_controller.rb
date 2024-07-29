@@ -1,11 +1,25 @@
 class SessionsController < ApplicationController
+  # def create
+  #   @admin = Admin.find_by(email: params[:email])
+  #   if @admin&.authenticate(params[:password])
+  #     session[:admin_id] = @admin.id
+  #     render json: @admin, status: :ok
+  #   else
+  #     render json: { error: 'Incorrect email or password' }, status: :unauthorized
+  #   end
+  # end
   def create
-    @admin = Admin.find_by(email: params[:email])
-    if @admin&.authenticate(params[:password])
-      session[:admin_id] = @admin.id
-      render json: @admin, status: :ok
+    admin = Admin.find_by(email: params[:email])
+    
+    if admin && admin.authenticate(params[:password])
+      if Admin::AUTHORIZED_USERS.include?(admin.email)
+        session[:admin_id] = admin.id
+        render json: { message: 'Login successful' }, status: :ok
+      else
+        render json: { error: 'Unauthorized! Unauthorized!' }, status: :unauthorized
+      end
     else
-      render json: { error: 'Incorrect email or password' }, status: :unauthorized
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
   end
 
