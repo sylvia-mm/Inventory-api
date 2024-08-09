@@ -4,6 +4,12 @@ set -o errexit
 echo "Starting bundle install"
 bundle install
 
+echo "Rails version:"
+bundle exec rails --version
+
+echo "Available rake tasks:"
+bundle exec rails --tasks
+
 echo "Starting assets precompile"
 bundle exec rails assets:precompile
 
