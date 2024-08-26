@@ -84,9 +84,11 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>test:
+  database: <%= ENV['DB_NAME'] %>_development
+
+test:
   <<: *default
-  database: checklist_app_test
+  database: <%= ENV['DB_NAME'] %>_test
 
 production:
   <<: *default
