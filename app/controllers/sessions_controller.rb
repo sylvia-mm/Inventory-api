@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:create, :logged_in]
+  skip_before_action :verify_authenticity_token
+
   def create
     admin = Admin.find_by(email: params[:email])
     
