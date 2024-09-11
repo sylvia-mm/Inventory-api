@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'products#index' 
   post '/signup', to: 'admins#create'
   post '/login', to: 'sessions#create'
   get '/mysession', to: 'sessions#show'
